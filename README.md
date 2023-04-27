@@ -19,11 +19,11 @@ Assembler
 
 
 ### Link to the tutorial I'm using to build the functionality. Right now I'm in step 7.2
-#### https://guides.rubyonrails.org/getting_started.html
+# https://guides.rubyonrails.org/getting_started.html
 
 # useful commands to remember
 > ruby bin/rails generate controller [Name of the Controller] index
-> bin/rails generate model [Name of the Model] title:string body:text
+> ruby bin/rails generate model [Name of the Model] title:string body:text
 
 -----------------------------------------------------------------------------------------------------
 
