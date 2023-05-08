@@ -14,9 +14,6 @@ Assembler
 # Send information to database
 > ruby bin/rails db:migrate
 
-## Example to create a new article
-> article = Article.new(title: "something", body: "something something")
-
 
 ### Link to the tutorial I'm using to build the functionality. Right now I'm in step 7.2
 # https://guides.rubyonrails.org/getting_started.html
