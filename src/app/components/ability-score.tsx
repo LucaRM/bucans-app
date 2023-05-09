@@ -1,6 +1,6 @@
-import {AbilityScoreGenerator, calculateModifier} from "@/app/functions";
-import {AbilityScore} from "@/app/models/character-sheet/characterSheet.model";
-import {useEffect, useState} from "react";
+import { AbilityScoreGenerator, calculateModifier } from "@/app/functions";
+import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
+import { useEffect, useState } from "react";
 
 interface AbilityScoreComponentProps {
     onAbilityScoreGeneration: (abilityScores: AbilityScore[]) => void;

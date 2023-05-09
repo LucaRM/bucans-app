@@ -1,9 +1,9 @@
 "use client";
-import {calculateModifier, getValueByName, roll} from "@/app/functions";
-import {AbilityScore} from "@/app/models/character-sheet/characterSheet.model";
-import {useState} from "react";
-import AbilityScoreComponent from "../../../pages/components/ability-score";
+import { calculateModifier, getValueByName, roll } from "@/app/functions";
+import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
+import { useState } from "react";
 import ModalCritico from "../../components/modal";
+import AbilityScoreComponent from "./../../components/ability-score";
 import "./page.module.scss";
 
 export default function Home() {
@@ -18,7 +18,6 @@ export default function Home() {
     }
 
     const onAbilityScoreGeneration = (abilitScores: AbilityScore[]) => {
-        console.log("Setted Ability Scores");
         setAbilityScore(abilitScores);
     };
 
@@ -37,6 +36,7 @@ export default function Home() {
                     {rolling !== "" ? <p>Rolled: {rolling}</p> : <></>}
                     <p>Result: {result}</p>
                 </div>
+                {/* Longsword */}
                 <button
                     onClick={() =>
                         rollDice(
@@ -51,6 +51,7 @@ export default function Home() {
                         getValueByName(AbilityScore, "STRENGTH")
                     )}
                 </button>
+                {/* Shortsword */}
                 <button
                     onClick={() =>
                         rollDice(
@@ -65,6 +66,7 @@ export default function Home() {
                         getValueByName(AbilityScore, "DEXTERITY")
                     )}
                 </button>
+                {/* Intelligence attack */}
                 <button
                     onClick={() =>
                         rollDice(
@@ -79,6 +81,7 @@ export default function Home() {
                         getValueByName(AbilityScore, "INTELLIGENCE")
                     )}
                 </button>
+                {/* Wisdom attack */}
                 <button
                     onClick={() =>
                         rollDice(
@@ -91,6 +94,7 @@ export default function Home() {
                     Wisdom Spell Attack{" "}
                     {calculateModifier(getValueByName(AbilityScore, "WISDOM"))}
                 </button>
+                {/* Charisma attack */}
                 <button
                     onClick={() =>
                         rollDice(
@@ -105,6 +109,7 @@ export default function Home() {
                         getValueByName(AbilityScore, "CHARISMA")
                     )}
                 </button>
+                {/* Roll a d20 */}
                 <button
                     className="button-roll"
                     onClick={() => rollDice("1d20")}
