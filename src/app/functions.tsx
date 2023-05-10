@@ -1,4 +1,4 @@
-import {AbilityScore} from "./models/character-sheet/characterSheet.model";
+import { AbilityScore } from "./models/character-sheet/characterSheet.model";
 
 export const roll = (roll: string): number => {
     let numberOfDice = parseInt(roll.split("d")[0]);
@@ -11,7 +11,8 @@ export const roll = (roll: string): number => {
     }
     if (Positivebonus) {
         sum += Positivebonus;
-    } else if (negativeBonus) {
+    }
+    if (negativeBonus) {
         sum -= negativeBonus;
     }
     return sum;
