@@ -1,6 +1,7 @@
 import { AbilityScoreGenerator, calculateModifier } from "@/app/functions";
 import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import { useEffect, useState } from "react";
+import styles from "./ability-score.module.scss";
 
 interface AbilityScoreComponentProps {
     onAbilityScoreGeneration: (abilityScores: AbilityScore[]) => void;
@@ -39,16 +40,15 @@ export default function AbilityScoreComponent({
     }
 
     return (
-        <div>
-            <h1>Ability Scores</h1>
+        <div className={styles.container}>
+            {/* <h1>Ability Scores</h1> */}
             {[...Array(abilityScoreNames.length)].map((e, i) => (
-                <div key={i}>
+                <div className={styles.abilityScore} key={i}>
                     <h2>
                         {AbilityScore.length > 1 ? AbilityScore[i].ability : ""}
                     </h2>
                     <p>{AbilityScore.length > 1 ? AbilityScore[i].value : 0}</p>
                     <p>
-                        Modifier:
                         {AbilityScore.length > 1
                             ? calculateModifier(AbilityScore[i]?.value) === "-0"
                                 ? "0"

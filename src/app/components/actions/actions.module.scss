@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0;
+    padding: 1rem;
+    color: black;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: #f0f0f0;
+
+    p {
+        margin-left: 0.2rem;
+    }
+
+    .action {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0.2rem;
+        padding: 0.5rem;
+        color: black;
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        background-color: #f0f0f0;
+    }
+}
