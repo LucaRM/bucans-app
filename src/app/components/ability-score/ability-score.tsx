@@ -10,9 +10,8 @@ interface AbilityScoreComponentProps {
 export default function AbilityScoreComponent({
     onAbilityScoreGeneration,
 }: AbilityScoreComponentProps) {
-    const aS = 6;
-
     const [AbilityScore, setAbilityScore] = useState<AbilityScore[]>([]);
+    const aS = AbilityScore.length;
 
     const abilityScoreNames = [
         "STRENGTH",
@@ -40,7 +39,7 @@ export default function AbilityScoreComponent({
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.abilityScoreContainer}>
             {/* <h1>Ability Scores</h1> */}
             {[...Array(abilityScoreNames.length)].map((e, i) => (
                 <div className={styles.abilityScore} key={i}>

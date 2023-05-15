@@ -15,6 +15,9 @@ export const roll = (roll: string): number => {
     if (negativeBonus) {
         sum -= negativeBonus;
     }
+    if (sum < 0) {
+        sum = 0;
+    }
     return sum;
 };
 

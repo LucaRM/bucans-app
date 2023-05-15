@@ -2,8 +2,12 @@ import variables from "../styles/variables.module.scss";
 
 export default function MyApp({ Component, pageProps }) {
     return (
-        <Layout color={variables.primaryColor}>
-            <Component {...pageProps} />
-        </Layout>
+        <Router>
+            <Layout color={variables.primaryColor}>
+                <Provider store={store}>
+                    <Component {...pageProps} />
+                </Provider>
+            </Layout>
+        </Router>
     );
 }

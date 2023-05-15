@@ -9,27 +9,35 @@ export default function Actions({
     abilityScores: AbilityScore[];
 }) {
     const [result, setResult] = useState(0);
+    const [rolling, setRolling] = useState(false);
     const [abilityScore, setAbilityScore] = useState<AbilityScore[]>([]);
     const [argument, setArgument] = useState("");
-
-    //create a useeffect that will run on load and set the ability scores from the abilityScores prop
 
     useEffect(() => {
         setAbilityScore(abilityScores);
     }, [abilityScores]);
 
     function rollDice(argument: string) {
-        setArgument(argument);
-        setResult(roll(argument));
+        setRolling(true);
+        setTimeout(() => {
+            setArgument(argument);
+            setResult(roll(argument));
+            setRolling(false);
+        }, 200);
         return result;
     }
 
     return (
-        <div className={styles.container}>
-            {/* <h1>Ability Scores</h1> */}
-            <div>
+        <div className={styles.actionsContainer}>
+            <div className={styles.text}>
                 {argument !== "" ? <p>Rolling: {argument}</p> : <></>}
-                <p>Total: {result}</p>
+                <div className={styles.rollingBox}>
+                    {rolling ? (
+                        <div className={styles.rolling}></div>
+                    ) : (
+                        <p>Total: {result}</p>
+                    )}
+                </div>
             </div>
             {/* Longsword */}
             <button
@@ -47,6 +55,7 @@ export default function Actions({
             {/* Shortsword */}
             <button
                 className={styles.action}
+                disabled={rolling}
                 onClick={() =>
                     rollDice(
                         `1d20${calculateModifier(
@@ -60,6 +69,7 @@ export default function Actions({
             {/* Intelligence attack */}
             <button
                 className={styles.action}
+                disabled={rolling}
                 onClick={() =>
                     rollDice(
                         `1d20${calculateModifier(
@@ -73,6 +83,7 @@ export default function Actions({
             {/* Wisdom attack */}
             <button
                 className={styles.action}
+                disabled={rolling}
                 onClick={() =>
                     rollDice(
                         `1d20${calculateModifier(
@@ -86,6 +97,7 @@ export default function Actions({
             {/* Charisma attack */}
             <button
                 className={styles.action}
+                disabled={rolling}
                 onClick={() =>
                     rollDice(
                         `1d20${calculateModifier(

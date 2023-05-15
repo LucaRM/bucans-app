@@ -10,7 +10,7 @@ export default function Home() {
             </div>
             <div>
                 {/* Link to a page on character/sheet */}
-                <Link href="/character/sheet">
+                <Link href="/pages/character/random">
                     <p>Generate a character!</p>
                 </Link>
             </div>
