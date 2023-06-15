@@ -3,8 +3,7 @@ import Actions from "@/app/components/actions/actions";
 import { roll } from "@/app/functions";
 import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import { useState } from "react";
-import AbilityScoreComponent from "../../../components/ability-score/ability-score";
-import ModalCritico from "../../../components/modal";
+import ModalCritico from "../../components/modal";
 import styles from "./page.module.scss";
 
 export default function Home() {
@@ -29,9 +28,9 @@ export default function Home() {
                             Character Sheet &nbsp;
                         </p>
                     </div>
-                    <AbilityScoreComponent
+                    {/* <AbilityScoreComponent
                         onAbilityScoreGeneration={onAbilityScoreGeneration}
-                    />
+                    /> */}
 
                     <Actions abilityScores={AbilityScore} />
 

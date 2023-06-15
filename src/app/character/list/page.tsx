@@ -1,6 +1,7 @@
 "use client";
 import { fetchCharacters } from "@/apis/character-api";
 import { Character } from "@/app/models/character-sheet/characterSheet.model";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function CharacterList() {
@@ -25,10 +26,12 @@ export default function CharacterList() {
                 <div className="flex flex-col items-center justify-between w-full max-w-5xl mt-24 space-y-4">
                     {characters.map((character) => (
                         <div className="flex flex-col items-center justify-between w-full max-w-5xl mt-24 space-y-4">
-                            <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-100">
-                                {character.name}
-                            </h1>
-                            <h2>{character._id}</h2>
+                            <Link href={`/character/${character._id}`}>
+                                <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-100">
+                                    {character.name}
+                                </h1>
+                                <h2>{character._id}</h2>
+                            </Link>
                         </div>
                     ))}
                 </div>

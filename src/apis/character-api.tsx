@@ -10,6 +10,6 @@ export async function fetchCharacters() {
 export async function fetchCharacter(_id: string) {
     const response = await fetch(`http://localhost:3030/characters?_id=${_id}`);
     const data = await response.json();
-    const character: Character = data.data;
+    const character: Character = data.data[0];
     return character;
 }
