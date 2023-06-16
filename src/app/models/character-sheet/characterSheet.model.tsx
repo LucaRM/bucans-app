@@ -1,29 +1,39 @@
-export interface AbilityScore {
-    ability: string;
-    value: number;
-}
-
 export interface Character {
-    _id: string;
+    _id?: string;
+    user: string;
     name: string;
     level: number;
     class: string;
-    abilityScore: AbilityScore[];
+    abilityScore: AbilityScoreGeneric;
 }
 
-export const constructorAbilityScore = (): AbilityScore => {
-    return {
-        ability: "",
-        value: 0,
-    };
-};
+export interface AbilityScore5e {
+    strength: number;
+    dexterity: number;
+    constitution: number;
+    intelligence: number;
+    wisdom: number;
+    charisma: number;
+}
 
-export const constructorCharacter = (): Character => {
+export interface AbilityScoreGeneric {
+    [key: string]: number;
+}
+
+export const constructorCharacter5e = (): Character => {
     return {
         _id: "",
+        user: "",
         name: "",
         level: 0,
         class: "",
-        abilityScore: [],
+        abilityScore: {
+            strength: 0,
+            dexterity: 0,
+            constitution: 0,
+            intelligence: 0,
+            wisdom: 0,
+            charisma: 0,
+        },
     };
 };

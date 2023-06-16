@@ -1,5 +1,3 @@
-import { AbilityScore } from "./models/character-sheet/characterSheet.model";
-
 export const roll = (roll: string): number => {
     let numberOfDice = parseInt(roll.split("d")[0]);
     let sizeOfDice = parseInt(roll.split("d")[1]);
@@ -33,18 +31,8 @@ export const AbilityScoreGenerator = (): number => {
 
 export const calculateModifier = (abilityScore: number): string => {
     if (abilityScore > 10) {
-        return "+" + Math.ceil((abilityScore - 10) / 2);
+        return "+" + Math.floor((abilityScore - 10) / 2);
     } else {
-        return "-" + Math.ceil((10 - abilityScore) / 2);
+        return "-" + Math.floor((10 - abilityScore) / 2);
     }
-};
-
-export const getValueByName = (
-    abilityScores: AbilityScore[],
-    abilityScoreName: string
-): number => {
-    const ability = abilityScores.find(
-        (abilityScore) => abilityScore.ability === abilityScoreName
-    );
-    return ability?.value || 0;
 };

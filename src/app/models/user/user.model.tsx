@@ -1,7 +1,8 @@
 export interface User {
-    _id: string;
+    _id?: string;
     name: string;
     email: string;
+    password: string;
 }
 
 export const constructorUser = (): User => {
@@ -9,5 +10,6 @@ export const constructorUser = (): User => {
         _id: "",
         name: "",
         email: "",
+        password: "",
     };
 };

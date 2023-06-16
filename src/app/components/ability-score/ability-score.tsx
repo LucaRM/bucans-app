@@ -1,40 +1,24 @@
+import { abilityScoreName5e } from "@/app/common";
 import { calculateModifier } from "@/app/functions";
-import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
+import { AbilityScoreGeneric } from "@/app/models/character-sheet/characterSheet.model";
 import styles from "./ability-score.module.scss";
 
 export default function AbilityScoreComponent({
     abilityScores,
 }: {
-    abilityScores: AbilityScore[];
+    abilityScores: AbilityScoreGeneric;
 }) {
-    const abilityScoreNames = [
-        "STRENGTH",
-        "DEXTERITY",
-        "CONSTITUTION",
-        "INTELLIGENCE",
-        "WISDOM",
-        "CHARISMA",
-    ];
-
     return (
         <div className={styles.abilityScoreContainer}>
-            {/* <h1>Ability Scores</h1> */}
-            {[...Array(abilityScoreNames.length)].map((e, i) => (
-                <div className={styles.abilityScore} key={i}>
-                    <h2>
-                        {abilityScores.length > 1
-                            ? abilityScores[i].ability
-                            : ""}
-                    </h2>
+            {Object.values(abilityScores).map((value, index) => (
+                <div className={styles.abilityScore} key={index}>
+                    <h2>{abilityScoreName5e[index]}</h2>
+                    <p>{value}</p>
                     <p>
-                        {abilityScores.length > 1 ? abilityScores[i].value : 0}
-                    </p>
-                    <p>
-                        {abilityScores.length > 1
-                            ? calculateModifier(abilityScores[i]?.value) ===
-                              "-0"
+                        {value
+                            ? calculateModifier(value) === "-0"
                                 ? "0"
-                                : calculateModifier(abilityScores[i]?.value)
+                                : calculateModifier(value)
                             : 0}
                     </p>
                 </div>

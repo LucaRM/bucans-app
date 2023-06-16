@@ -1,4 +1,4 @@
-import { calculateModifier, getValueByName, roll } from "@/app/functions";
+import { calculateModifier, roll } from "@/app/functions";
 import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import { useEffect, useState } from "react";
 import styles from "./actions.module.scss";
@@ -6,11 +6,11 @@ import styles from "./actions.module.scss";
 export default function Actions({
     abilityScores,
 }: {
-    abilityScores: AbilityScore[];
+    abilityScores: AbilityScore;
 }) {
     const [result, setResult] = useState(0);
     const [rolling, setRolling] = useState(false);
-    const [abilityScore, setAbilityScore] = useState<AbilityScore[]>([]);
+    const [abilityScore, setAbilityScore] = useState<AbilityScore>({});
     const [argument, setArgument] = useState("");
 
     useEffect(() => {
@@ -43,11 +43,7 @@ export default function Actions({
             <button
                 className={styles.action}
                 onClick={() =>
-                    rollDice(
-                        `1d20${calculateModifier(
-                            getValueByName(abilityScore, "STRENGTH")
-                        )}`
-                    )
+                    rollDice(`1d20${calculateModifier(abilityScore.strength)}`)
                 }
             >
                 Longsword{" "}
@@ -57,11 +53,7 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(
-                        `1d20${calculateModifier(
-                            getValueByName(abilityScore, "DEXTERITY")
-                        )}`
-                    )
+                    rollDice(`1d20${calculateModifier(abilityScore.dexterity)}`)
                 }
             >
                 Shortsword{" "}
@@ -72,9 +64,7 @@ export default function Actions({
                 disabled={rolling}
                 onClick={() =>
                     rollDice(
-                        `1d20${calculateModifier(
-                            getValueByName(abilityScore, "INTELLIGENCE")
-                        )}`
+                        `1d20${calculateModifier(abilityScore.intelligence)}`
                     )
                 }
             >
@@ -85,11 +75,7 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(
-                        `1d20${calculateModifier(
-                            getValueByName(abilityScore, "WISDOM")
-                        )}`
-                    )
+                    rollDice(`1d20${calculateModifier(abilityScore.wisdom)}`)
                 }
             >
                 Wisdom Spell Attack{" "}
@@ -99,11 +85,7 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(
-                        `1d20${calculateModifier(
-                            getValueByName(abilityScore, "CHARISMA")
-                        )}`
-                    )
+                    rollDice(`1d20${calculateModifier(abilityScore.charisma)}`)
                 }
             >
                 Charisma Spell Attack{" "}
