@@ -1,49 +1,33 @@
-import { calculateModifier, roll } from "@/app/functions";
-import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
+import { calculateModifier } from "@/app/functions";
+import { AbilityScoreGeneric } from "@/app/models/character-sheet/characterSheet.model";
 import { useEffect, useState } from "react";
 import styles from "./actions.module.scss";
 
-export default function Actions({
+export default function ActionsComponent({
     abilityScores,
+    rollNewDice,
 }: {
-    abilityScores: AbilityScore;
+    abilityScores: AbilityScoreGeneric;
+    rollNewDice: (data: string) => void;
 }) {
     const [result, setResult] = useState(0);
     const [rolling, setRolling] = useState(false);
-    const [abilityScore, setAbilityScore] = useState<AbilityScore>({});
+    const [abilityScore, setAbilityScore] = useState<AbilityScoreGeneric>({});
     const [argument, setArgument] = useState("");
 
     useEffect(() => {
         setAbilityScore(abilityScores);
     }, [abilityScores]);
 
-    function rollDice(argument: string) {
-        setRolling(true);
-        setTimeout(() => {
-            setArgument(argument);
-            setResult(roll(argument));
-            setRolling(false);
-        }, 200);
-        return result;
-    }
-
     return (
         <div className={styles.actionsContainer}>
-            <div className={styles.text}>
-                {argument !== "" ? <p>Rolling: {argument}</p> : <></>}
-                <div className={styles.rollingBox}>
-                    {rolling ? (
-                        <div className={styles.rolling}></div>
-                    ) : (
-                        <p>Total: {result}</p>
-                    )}
-                </div>
-            </div>
             {/* Longsword */}
             <button
                 className={styles.action}
                 onClick={() =>
-                    rollDice(`1d20${calculateModifier(abilityScore.strength)}`)
+                    rollNewDice(
+                        `1d20${calculateModifier(abilityScore.strength)}`
+                    )
                 }
             >
                 Longsword{" "}
@@ -53,7 +37,9 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(`1d20${calculateModifier(abilityScore.dexterity)}`)
+                    rollNewDice(
+                        `1d20${calculateModifier(abilityScore.dexterity)}`
+                    )
                 }
             >
                 Shortsword{" "}
@@ -63,7 +49,7 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(
+                    rollNewDice(
                         `1d20${calculateModifier(abilityScore.intelligence)}`
                     )
                 }
@@ -75,7 +61,7 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(`1d20${calculateModifier(abilityScore.wisdom)}`)
+                    rollNewDice(`1d20${calculateModifier(abilityScore.wisdom)}`)
                 }
             >
                 Wisdom Spell Attack{" "}
@@ -85,7 +71,9 @@ export default function Actions({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollDice(`1d20${calculateModifier(abilityScore.charisma)}`)
+                    rollNewDice(
+                        `1d20${calculateModifier(abilityScore.charisma)}`
+                    )
                 }
             >
                 Charisma Spell Attack{" "}
