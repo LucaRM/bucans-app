@@ -4,9 +4,10 @@ import { Character } from "@/app/models/character-sheet/characterSheet.model";
 import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./page.module.scss";
 
-const CharacterAddPage = () => {
+const CharacterAddPage5e = () => {
     const [character, setCharacter] = useState<Character>({
         user: "",
+        system: "dnd5e",
         name: "",
         class: "",
         level: 0,
@@ -18,6 +19,142 @@ const CharacterAddPage = () => {
             wisdom: 0,
             charisma: 0,
         },
+        skills: [
+            {
+                name: "Acrobatics",
+                proficiency: "not-proficient",
+                ability: "dexterity",
+                order: "1",
+                addon: false,
+            },
+            {
+                name: "Animal Handling",
+                proficiency: "not-proficient",
+                ability: "wisdom",
+                order: "2",
+                addon: false,
+            },
+            {
+                name: "Arcana",
+                proficiency: "not-proficient",
+                ability: "intelligence",
+                order: "3",
+                addon: false,
+            },
+            {
+                name: "Athletics",
+                proficiency: "not-proficient",
+                ability: "strength",
+                order: "4",
+                addon: false,
+            },
+            {
+                name: "Deception",
+                proficiency: "not-proficient",
+                ability: "charisma",
+                order: "5",
+                addon: false,
+            },
+            {
+                name: "History",
+                proficiency: "not-proficient",
+                ability: "intelligence",
+                order: "6",
+                addon: false,
+            },
+            {
+                name: "Insight",
+                proficiency: "not-proficient",
+                ability: "wisdom",
+                order: "7",
+                addon: false,
+            },
+            {
+                name: "Intimidation",
+                proficiency: "not-proficient",
+                ability: "charisma",
+                order: "8",
+                addon: false,
+            },
+            {
+                name: "Investigation",
+                proficiency: "not-proficient",
+                ability: "intelligence",
+                order: "9",
+                addon: false,
+            },
+            {
+                name: "Medicine",
+                proficiency: "not-proficient",
+                ability: "wisdom",
+                order: "10",
+                addon: false,
+            },
+            {
+                name: "Nature",
+                proficiency: "not-proficient",
+                ability: "intelligence",
+                order: "11",
+                addon: false,
+            },
+            {
+                name: "Perception",
+                proficiency: "not-proficient",
+                ability: "wisdom",
+                order: "12",
+                addon: false,
+            },
+            {
+                name: "Performance",
+                proficiency: "not-proficient",
+                ability: "charisma",
+                order: "13",
+                addon: false,
+            },
+            {
+                name: "Persuasion",
+                proficiency: "not-proficient",
+                ability: "charisma",
+                order: "14",
+                addon: false,
+            },
+            {
+                name: "Religion",
+                proficiency: "not-proficient",
+                ability: "intelligence",
+                order: "15",
+                addon: false,
+            },
+            {
+                name: "Sleight of Hand",
+                proficiency: "not-proficient",
+                ability: "dexterity",
+                order: "16",
+                addon: false,
+            },
+            {
+                name: "Stealth",
+                proficiency: "not-proficient",
+                ability: "dexterity",
+                order: "17",
+                addon: false,
+            },
+            {
+                name: "Survival",
+                proficiency: "not-proficient",
+                ability: "wisdom",
+                order: "18",
+                addon: false,
+            },
+        ],
+        savingThrow: {
+            strength: "not-proficient",
+            dexterity: "not-proficient",
+            constitution: "not-proficient",
+            intelligence: "not-proficient",
+            wisdom: "not-proficient",
+            charisma: "not-proficient",
+        },
     });
 
     const handleAbilityChange = (ability: string, value: number) => {
@@ -27,6 +164,30 @@ const CharacterAddPage = () => {
                 ...prevCharacter.abilityScore,
                 [ability]: value,
             },
+        }));
+    };
+
+    const handleProficiencyChange = (index: number) => {
+        const updatedSkills = [...character.skills];
+        updatedSkills[index].proficiency =
+            updatedSkills[index].proficiency === "not-proficient"
+                ? "proficient"
+                : "not-proficient";
+        setCharacter((prevCharacter) => ({
+            ...prevCharacter,
+            skills: updatedSkills,
+        }));
+    };
+
+    const handleSavingThrowChange = (ability: string) => {
+        const updatedSavingThrow = { ...character.savingThrow };
+        updatedSavingThrow[ability] =
+            updatedSavingThrow[ability] !== "proficient"
+                ? "proficient"
+                : "not-proficient";
+        setCharacter((prevCharacter) => ({
+            ...prevCharacter,
+            savingThrow: updatedSavingThrow,
         }));
     };
 
@@ -42,9 +203,7 @@ const CharacterAddPage = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(character);
         createCharacter(character, "");
-        // Perform submit logic
     };
 
     return (
@@ -103,10 +262,44 @@ const CharacterAddPage = () => {
                         />
                     </label>
                 ))}
+
+                <p>Skills</p>
+
+                {character.skills.map((skill, index) => (
+                    <div key={index}>
+                        <input
+                            type="checkbox"
+                            name={`proficiency-${index}`}
+                            value="proficient"
+                            checked={skill.proficiency === "proficient"}
+                            onChange={() => handleProficiencyChange(index)}
+                        />
+                        <label>{skill.name}</label>
+                    </div>
+                ))}
+
+                <p>Saving Throws</p>
+
+                {Object.keys(character.savingThrow).map((ability, index) => (
+                    <div key={ability}>
+                        <input
+                            key={index}
+                            type="checkbox"
+                            name={`proficiency-${index}`}
+                            checked={
+                                character.savingThrow[ability] === "proficient"
+                            }
+                            value={character.savingThrow[ability]}
+                            onChange={() => handleSavingThrowChange(ability)}
+                        />
+                        <label>{ability}</label>:
+                    </div>
+                ))}
+
                 <button type="submit">Submit</button>
             </form>
         </main>
     );
 };
 
-export default CharacterAddPage;
+export default CharacterAddPage5e;

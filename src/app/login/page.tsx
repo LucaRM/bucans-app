@@ -23,7 +23,6 @@ const Login = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(user);
         createUser(user, "");
     };
 

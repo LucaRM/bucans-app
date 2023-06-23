@@ -1,46 +1,46 @@
 import { calculateBonus5e } from "@/app/functions";
 import {
     AbilityScore,
-    Skill,
+    SavingThrow,
 } from "@/app/models/character-sheet/characterSheet.model";
-import styles from "./skills.module.scss";
+import styles from "./saving-throw.module.scss";
 
-export default function SkillsComponent({
+export default function SavingThrowComponent({
     system,
-    skills,
+    savingThrows,
     abilityScores,
     rollNewDice,
     proficiencyBonus,
 }: {
     system: string;
-    skills: Skill[];
+    savingThrows: SavingThrow;
     abilityScores: AbilityScore;
     rollNewDice: (data: string) => void;
     proficiencyBonus: number;
 }) {
     return (
         <div className={styles.abilityScoreContainer}>
-            {skills ? (
-                skills.map((skill, index) => (
+            {savingThrows ? (
+                Object.keys(savingThrows).map((ability, index) => (
                     <button
                         onClick={() =>
                             rollNewDice(
                                 `1d20${calculateBonus5e(
-                                    abilityScores[skill.ability],
+                                    abilityScores[ability],
                                     proficiencyBonus,
-                                    skill.proficiency
+                                    savingThrows[ability]
                                 )}`
                             )
                         }
                         className={styles.abilityScore}
                         key={index}
                     >
-                        <p>{skill.name}</p>
+                        <p>{ability}</p>
                         <p>
                             {calculateBonus5e(
-                                abilityScores[skill.ability],
+                                abilityScores[ability],
                                 proficiencyBonus,
-                                skill.proficiency
+                                savingThrows[ability]
                             )}
                         </p>
                     </button>

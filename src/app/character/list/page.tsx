@@ -14,8 +14,6 @@ export default function CharacterList() {
         });
     }, []);
 
-    console.log(characters);
-
     return (
         <>
             <main className="flex min-h-screen flex-col items-center justify-between p-24">

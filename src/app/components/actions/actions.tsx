@@ -1,18 +1,20 @@
-import { calculateModifier } from "@/app/functions";
-import { AbilityScoreGeneric } from "@/app/models/character-sheet/characterSheet.model";
+import { calculateBonus5e } from "@/app/functions";
+import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import { useEffect, useState } from "react";
 import styles from "./actions.module.scss";
 
 export default function ActionsComponent({
     abilityScores,
     rollNewDice,
+    proficiencyBonus,
 }: {
-    abilityScores: AbilityScoreGeneric;
+    abilityScores: AbilityScore;
     rollNewDice: (data: string) => void;
+    proficiencyBonus: number;
 }) {
     const [result, setResult] = useState(0);
     const [rolling, setRolling] = useState(false);
-    const [abilityScore, setAbilityScore] = useState<AbilityScoreGeneric>({});
+    const [abilityScore, setAbilityScore] = useState<AbilityScore>({});
     const [argument, setArgument] = useState("");
 
     useEffect(() => {
@@ -26,7 +28,11 @@ export default function ActionsComponent({
                 className={styles.action}
                 onClick={() =>
                     rollNewDice(
-                        `1d20${calculateModifier(abilityScore.strength)}`
+                        `1d20${calculateBonus5e(
+                            abilityScore.strength,
+                            proficiencyBonus,
+                            "not-proficient"
+                        )}`
                     )
                 }
             >
@@ -38,7 +44,11 @@ export default function ActionsComponent({
                 disabled={rolling}
                 onClick={() =>
                     rollNewDice(
-                        `1d20${calculateModifier(abilityScore.dexterity)}`
+                        `1d20${calculateBonus5e(
+                            abilityScore.dexterity,
+                            proficiencyBonus,
+                            "not-proficient"
+                        )}`
                     )
                 }
             >
@@ -50,7 +60,11 @@ export default function ActionsComponent({
                 disabled={rolling}
                 onClick={() =>
                     rollNewDice(
-                        `1d20${calculateModifier(abilityScore.intelligence)}`
+                        `1d20${calculateBonus5e(
+                            abilityScore.intelligence,
+                            proficiencyBonus,
+                            "not-proficient"
+                        )}`
                     )
                 }
             >
@@ -61,7 +75,13 @@ export default function ActionsComponent({
                 className={styles.action}
                 disabled={rolling}
                 onClick={() =>
-                    rollNewDice(`1d20${calculateModifier(abilityScore.wisdom)}`)
+                    rollNewDice(
+                        `1d20${calculateBonus5e(
+                            abilityScore.wisdom,
+                            proficiencyBonus,
+                            "not-proficient"
+                        )}`
+                    )
                 }
             >
                 Wisdom Spell Attack{" "}
@@ -72,7 +92,11 @@ export default function ActionsComponent({
                 disabled={rolling}
                 onClick={() =>
                     rollNewDice(
-                        `1d20${calculateModifier(abilityScore.charisma)}`
+                        `1d20${calculateBonus5e(
+                            abilityScore.charisma,
+                            proficiencyBonus,
+                            "not-proficient"
+                        )}`
                     )
                 }
             >

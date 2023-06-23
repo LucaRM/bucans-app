@@ -1,21 +1,29 @@
 import { abilityScoreName5e } from "@/app/common";
-import { calculateModifier } from "@/app/functions";
-import { AbilityScoreGeneric } from "@/app/models/character-sheet/characterSheet.model";
+import { calculateBonus5e } from "@/app/functions";
+import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import styles from "./ability-score.module.scss";
 
 export default function AbilityScoreComponent({
     abilityScores,
     rollNewDice,
+    proficiencyBonus,
 }: {
-    abilityScores: AbilityScoreGeneric;
+    abilityScores: AbilityScore;
     rollNewDice: (data: string) => void;
+    proficiencyBonus: number;
 }) {
     return (
         <div className={styles.abilityScoreContainer}>
             {Object.values(abilityScores).map((value, index) => (
                 <button
                     onClick={() =>
-                        rollNewDice(`1d20${calculateModifier(value)}`)
+                        rollNewDice(
+                            `1d20${calculateBonus5e(
+                                value,
+                                proficiencyBonus,
+                                "not-proficiency"
+                            )}`
+                        )
                     }
                     className={styles.abilityScore}
                     key={index}
@@ -24,9 +32,17 @@ export default function AbilityScoreComponent({
                     <p>{value}</p>
                     <p>
                         {value
-                            ? calculateModifier(value) === "-0"
+                            ? calculateBonus5e(
+                                  value,
+                                  proficiencyBonus,
+                                  "not-proficiency"
+                              ) === "-0"
                                 ? "0"
-                                : calculateModifier(value)
+                                : calculateBonus5e(
+                                      value,
+                                      proficiencyBonus,
+                                      "not-proficiency"
+                                  )
                             : 0}
                     </p>
                 </button>

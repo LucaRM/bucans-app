@@ -8,12 +8,25 @@ export const AbilityScoreGenerator = (): number => {
     return rolls.reduce((partialSum, a) => partialSum + a, 0);
 };
 
-export const calculateModifier = (abilityScore: number): string => {
-    if (abilityScore > 10) {
-        return "+" + Math.floor((abilityScore - 10) / 2);
-    } else {
-        return Math.floor((abilityScore - 10) / 2).toString();
-    }
+export const calculateBonus5e = (
+    abilityScore: number,
+    proficiencyBonus: number,
+    proficient?: string
+): string => {
+    let result = 0;
+    result = Math.floor((abilityScore - 10) / 2);
+
+    proficient === "not-proficient"
+        ? result
+        : proficient === "proficient"
+        ? (result = result + proficiencyBonus)
+        : proficient === "expertise"
+        ? (result = result + 2 * proficiencyBonus)
+        : result;
+
+    if (result < 0) {
+        return `-${result}`;
+    } else return `+${result}`;
 };
 
 export const roll = (roll: string): number => {
@@ -35,4 +48,16 @@ export const roll = (roll: string): number => {
         sum = 0;
     }
     return sum;
+};
+
+export const getProficiencyBonus = (level: number) => {
+    return level <= 4
+        ? 2
+        : level <= 8
+        ? 3
+        : level <= 12
+        ? 4
+        : level <= 16
+        ? 5
+        : 6;
 };

@@ -5,12 +5,17 @@ export interface Character {
     name: string;
     level: number;
     class: string;
-    abilityScore: AbilityScoreGeneric;
+    abilityScore: AbilityScore;
     skills: Skill[];
+    savingThrow: SavingThrow;
 }
 
-export interface AbilityScoreGeneric {
+export interface AbilityScore {
     [key: string]: number;
+}
+
+export interface SavingThrow {
+    [key: string]: string;
 }
 
 export interface Skill {
@@ -31,5 +36,6 @@ export const constructorCharacter5e = (): Character => {
         class: "",
         abilityScore: {},
         skills: [],
+        savingThrow: {},
     };
 };
