@@ -1,5 +1,4 @@
-import { abilityScoreName5e } from "@/app/common";
-import { calculateBonus5e } from "@/app/functions";
+import { calculateBonus5e, formatWord } from "@/app/functions";
 import { AbilityScore } from "@/app/models/character-sheet/characterSheet.model";
 import styles from "./ability-score.module.scss";
 
@@ -28,7 +27,7 @@ export default function AbilityScoreComponent({
                     className={styles.abilityScore}
                     key={index}
                 >
-                    <h2>{abilityScoreName5e[index]}</h2>
+                    <h2>{formatWord(Object.keys(abilityScores)[index])}</h2>
                     <p>{value}</p>
                     <p>
                         {value

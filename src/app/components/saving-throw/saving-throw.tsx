@@ -1,4 +1,4 @@
-import { calculateBonus5e } from "@/app/functions";
+import { calculateBonus5e, formatWord } from "@/app/functions";
 import {
     AbilityScore,
     SavingThrow,
@@ -35,7 +35,7 @@ export default function SavingThrowComponent({
                         className={styles.abilityScore}
                         key={index}
                     >
-                        <p>{ability}</p>
+                        <p>{formatWord(ability)}</p>
                         <p>
                             {calculateBonus5e(
                                 abilityScores[ability],

@@ -61,3 +61,7 @@ export const getProficiencyBonus = (level: number) => {
         ? 5
         : 6;
 };
+
+export const formatWord = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};

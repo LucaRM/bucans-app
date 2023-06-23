@@ -1,12 +1,13 @@
-.abilityScoreContainer {
+.skillsContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     margin-left: 0;
     color: red;
+    max-width: 100%;
 
-    .abilityScore {
+    .skills {
         display: flex;
         flex-direction: column;
         justify-content: space-between;

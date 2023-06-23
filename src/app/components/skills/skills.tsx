@@ -19,7 +19,7 @@ export default function SkillsComponent({
     proficiencyBonus: number;
 }) {
     return (
-        <div className={styles.abilityScoreContainer}>
+        <div className={styles.skillsContainer}>
             {skills ? (
                 skills.map((skill, index) => (
                     <button
@@ -32,7 +32,7 @@ export default function SkillsComponent({
                                 )}`
                             )
                         }
-                        className={styles.abilityScore}
+                        className={styles.skills}
                         key={index}
                     >
                         <p>{skill.name}</p>
