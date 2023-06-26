@@ -17,6 +17,17 @@ export default function ActionsComponent({
     const [abilityScore, setAbilityScore] = useState<AbilityScore>({});
     const [argument, setArgument] = useState("");
 
+    function rollDice(ability: string) {
+        console.log("click");
+        rollNewDice(
+            `1d20${calculateBonus5e(
+                abilityScore[ability],
+                proficiencyBonus,
+                "not-proficient"
+            )}`
+        );
+    }
+
     useEffect(() => {
         setAbilityScore(abilityScores);
     }, [abilityScores]);
@@ -26,15 +37,7 @@ export default function ActionsComponent({
             {/* Longsword */}
             <button
                 className={styles.action}
-                onClick={() =>
-                    rollNewDice(
-                        `1d20${calculateBonus5e(
-                            abilityScore.strength,
-                            proficiencyBonus,
-                            "not-proficient"
-                        )}`
-                    )
-                }
+                onClick={() => rollDice("strength")}
             >
                 Longsword{" "}
             </button>
@@ -42,15 +45,7 @@ export default function ActionsComponent({
             <button
                 className={styles.action}
                 disabled={rolling}
-                onClick={() =>
-                    rollNewDice(
-                        `1d20${calculateBonus5e(
-                            abilityScore.dexterity,
-                            proficiencyBonus,
-                            "not-proficient"
-                        )}`
-                    )
-                }
+                onClick={() => rollDice("dexterity")}
             >
                 Shortsword{" "}
             </button>
@@ -58,15 +53,7 @@ export default function ActionsComponent({
             <button
                 className={styles.action}
                 disabled={rolling}
-                onClick={() =>
-                    rollNewDice(
-                        `1d20${calculateBonus5e(
-                            abilityScore.intelligence,
-                            proficiencyBonus,
-                            "not-proficient"
-                        )}`
-                    )
-                }
+                onClick={() => rollDice("intelligence")}
             >
                 Intelligence Spell Attack{" "}
             </button>
@@ -74,15 +61,7 @@ export default function ActionsComponent({
             <button
                 className={styles.action}
                 disabled={rolling}
-                onClick={() =>
-                    rollNewDice(
-                        `1d20${calculateBonus5e(
-                            abilityScore.wisdom,
-                            proficiencyBonus,
-                            "not-proficient"
-                        )}`
-                    )
-                }
+                onClick={() => rollDice("wisdom")}
             >
                 Wisdom Spell Attack{" "}
             </button>
@@ -90,15 +69,7 @@ export default function ActionsComponent({
             <button
                 className={styles.action}
                 disabled={rolling}
-                onClick={() =>
-                    rollNewDice(
-                        `1d20${calculateBonus5e(
-                            abilityScore.charisma,
-                            proficiencyBonus,
-                            "not-proficient"
-                        )}`
-                    )
-                }
+                onClick={() => rollDice("charisma")}
             >
                 Charisma Spell Attack{" "}
             </button>

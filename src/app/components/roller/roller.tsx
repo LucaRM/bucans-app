@@ -10,6 +10,7 @@ export default function RollerComponent({ diceRoll }: { diceRoll: string }) {
     const [rollHistory, setRollHistory] = useState<Roll[]>([]);
 
     useEffect(() => {
+        console.log("rolling: ", diceRoll);
         rollDice(diceRoll);
     }, [diceRoll]);
 

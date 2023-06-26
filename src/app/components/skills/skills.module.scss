@@ -1,6 +1,6 @@
 .skillsContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     margin-left: 0;
@@ -16,5 +16,6 @@
         border: 1px solid black;
         border-radius: 0.5rem;
         background-color: #f0f0f0;
+        width: 100%;
     }
 }

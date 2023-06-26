@@ -60,26 +60,32 @@ const CharacterDetailsPage = ({ params }: { params: { id: string } }) => {
                 abilityScores={character.abilityScore}
                 proficiencyBonus={proficiencyBonus}
             />
-            <SkillsComponent
-                system={character.system}
-                rollNewDice={rollNewDice}
-                skills={character.skills}
-                abilityScores={character.abilityScore}
-                proficiencyBonus={proficiencyBonus}
-            />
-            <SavingThrowComponent
-                system={character.system}
-                rollNewDice={rollNewDice}
-                savingThrows={character.savingThrow}
-                abilityScores={character.abilityScore}
-                proficiencyBonus={proficiencyBonus}
-            />
-            <ActionsComponent
-                rollNewDice={rollNewDice}
-                abilityScores={character.abilityScore}
-                proficiencyBonus={proficiencyBonus}
-            />
-            <RollerComponent diceRoll={diceRoll} />
+            <div className={styles.sheet}>
+                <div className={styles.skillList}>
+                    <SkillsComponent
+                        system={character.system}
+                        rollNewDice={rollNewDice}
+                        skills={character.skills}
+                        abilityScores={character.abilityScore}
+                        proficiencyBonus={proficiencyBonus}
+                    />
+                </div>
+                <div className={styles.body}>
+                    <SavingThrowComponent
+                        system={character.system}
+                        rollNewDice={rollNewDice}
+                        savingThrows={character.savingThrow}
+                        abilityScores={character.abilityScore}
+                        proficiencyBonus={proficiencyBonus}
+                    />
+                    <ActionsComponent
+                        rollNewDice={rollNewDice}
+                        abilityScores={character.abilityScore}
+                        proficiencyBonus={proficiencyBonus}
+                    />
+                    <RollerComponent diceRoll={diceRoll} />
+                </div>
+            </div>
         </main>
     );
 };

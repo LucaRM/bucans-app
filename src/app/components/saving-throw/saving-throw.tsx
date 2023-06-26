@@ -19,7 +19,7 @@ export default function SavingThrowComponent({
     proficiencyBonus: number;
 }) {
     return (
-        <div className={styles.abilityScoreContainer}>
+        <div className={styles.savingThrowContainer}>
             {savingThrows ? (
                 Object.keys(savingThrows).map((ability, index) => (
                     <button
@@ -32,7 +32,7 @@ export default function SavingThrowComponent({
                                 )}`
                             )
                         }
-                        className={styles.abilityScore}
+                        className={styles.savingThrow}
                         key={index}
                     >
                         <p>{formatWord(ability)}</p>
