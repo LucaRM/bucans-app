@@ -44,28 +44,28 @@ export async function createUser(user: User, token: string) {
     }
 }
 
-export async function login(user: User) {
-    try {
-        const response = await fetch("http://localhost:3030/authentication", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: {
-                startegy: "local",
-                email: user.email,
-                password: user.email,
-            },
-        });
+// export async function login(user: User) {
+//     try {
+//         const response = await fetch("http://localhost:3030/authentication", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: {
+//                 startegy: "local",
+//                 email: user.email,
+//                 password: user.email,
+//             },
+//         });
 
-        if (!response.ok) {
-            throw new Error("Failed to create user");
-        }
+//         if (!response.ok) {
+//             throw new Error("Failed to create user");
+//         }
 
-        const createdUser = await response.json();
-        return createdUser;
-    } catch (error) {
-        console.error("Error creating user:", error);
-        throw error;
-    }
-}
+//         const createdUser = await response.json();
+//         return createdUser;
+//     } catch (error) {
+//         console.error("Error creating user:", error);
+//         throw error;
+//     }
+// }

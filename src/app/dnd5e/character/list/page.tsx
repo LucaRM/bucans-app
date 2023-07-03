@@ -26,7 +26,7 @@ export default function CharacterList() {
                 <div className="flex flex-col items-center justify-between w-full max-w-5xl mt-24 space-y-4">
                     {characters.map((character) => (
                         <div className="flex flex-col items-center justify-between w-full max-w-5xl mt-24 space-y-4">
-                            <Link href={`/character/${character._id}`}>
+                            <Link href={`/dnd5e/character/${character._id}`}>
                                 <h1 className="text-2xl font-bold text-center text-gray-800 dark:text-gray-100">
                                     {character.name}
                                 </h1>

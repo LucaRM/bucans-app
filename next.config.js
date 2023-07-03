@@ -1,17 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+/**
+ * @type {import('next').NextConfig}
+ */
 const path = require("path");
 
 module.exports = {
-    nextConfig,
-    // async rewrites() {
-    //     return [
-    //         {
-    //             source: "/characters/:id",
-    //             destination: "/character/[id]",
-    //         },
-    //     ];
-    // },
+    i18n: {
+        locales: ["en", "fr", "pt"],
+        defaultLocale: "pt",
+    },
     sassOptions: {
         includePaths: [path.join(__dirname, "styles")],
     },
