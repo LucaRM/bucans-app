@@ -1,0 +1,17 @@
+.main {
+    padding: 0 10%;
+    max-width: 100%;
+
+    .sheet {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .skillList {
+            display: flex;
+        }
+
+        .body {
+            width: 80%;
+        }
+    }
+}

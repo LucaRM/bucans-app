@@ -25,7 +25,7 @@ export const calculateBonus5e = (
         : result;
 
     if (result < 0) {
-        return `-${result}`;
+        return `${result}`;
     } else return `+${result}`;
 };
 

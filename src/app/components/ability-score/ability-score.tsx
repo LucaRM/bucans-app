@@ -32,16 +32,16 @@ export default function AbilityScoreComponent({
                     <p>
                         {value
                             ? calculateBonus5e(
-                                  value,
-                                  proficiencyBonus,
-                                  "not-proficiency"
-                              ) === "-0"
+                                    value,
+                                    proficiencyBonus,
+                                    "not-proficiency"
+                                ) === "-0"
                                 ? "0"
                                 : calculateBonus5e(
-                                      value,
-                                      proficiencyBonus,
-                                      "not-proficiency"
-                                  )
+                                        value,
+                                        proficiencyBonus,
+                                        "not-proficiency"
+                                    )
                             : 0}
                     </p>
                 </button>
