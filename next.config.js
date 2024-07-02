@@ -5,7 +5,7 @@ const path = require("path");
 
 module.exports = {
     i18n: {
-        locales: ["en", "fr", "pt"],
+        locales: ["pt", "fr", "en"],
         defaultLocale: "pt",
     },
     sassOptions: {

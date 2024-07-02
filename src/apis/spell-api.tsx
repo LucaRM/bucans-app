@@ -1,4 +1,4 @@
-import { Spell } from "@/app/models/spell/spell.model";
+import {Spell} from "@/app/[locale]/models/spell/spell.model";
 
 export async function fetchSpells() {
     const response = await fetch("http://localhost:3030/spells");

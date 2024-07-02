@@ -1,4 +1,4 @@
-import { Character } from "@/app/models/character-sheet/characterSheet.model";
+import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
 
 export async function fetchCharacters() {
     const response = await fetch("http://localhost:3030/characters");

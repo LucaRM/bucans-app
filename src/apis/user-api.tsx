@@ -1,4 +1,4 @@
-import { User } from "@/app/models/user/user.model";
+import {User} from "@/app/[locale]/models/user/user.model";
 
 export async function fetchUsers() {
     const response = await fetch("http://localhost:3030/users");
