@@ -1,6 +1,6 @@
 import {roll} from "@/app/[locale]/functions";
 import {Roll} from "@/app/[locale]/models/roll/roll.model";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import styles from "./roller.module.scss";
 
 export default function RollerComponent({diceRoll}: {diceRoll: string}) {
@@ -8,41 +8,72 @@ export default function RollerComponent({diceRoll}: {diceRoll: string}) {
     const [rolling, setRolling] = useState(false);
     const [argument, setArgument] = useState("");
     const [rollHistory, setRollHistory] = useState<Roll[]>([]);
+    const historyRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        console.log("rolling: ", diceRoll);
-        rollDice(diceRoll);
+        if (diceRoll) {
+            rollDice(diceRoll);
+        }
     }, [diceRoll]);
+
+    useEffect(() => {
+        if (historyRef.current) {
+            historyRef.current.scrollTop = historyRef.current.scrollHeight;
+        }
+    }, [rollHistory]);
 
     function rollDice(argument: string) {
         setRolling(true);
+        setArgument(argument);
+
         setTimeout(() => {
-            setArgument(argument);
-            setResult(roll(argument));
+            const rollResult = roll(argument);
+            const modifier = extractModifier(argument);
+            const finalResult = rollResult + modifier;
+            setResult(finalResult);
             setRolling(false);
+            setRollHistory((prevHistory) => [
+                ...prevHistory,
+                {roll: argument, dice: 0, result: finalResult},
+            ]);
         }, 200);
-        setRollHistory([...rollHistory, {roll: argument, result: result}]);
-        return result;
+    }
+
+    function extractModifier(roll: string): number {
+        const match = roll.match(/([+-]\d+)$/);
+        return match ? parseInt(match[1], 10) : 0;
+    }
+
+    function clearHistory() {
+        setRollHistory([]);
     }
 
     return (
-        <>
-            <div className={styles.rollingContainer}>
-                <div className={styles.text}>
-                    {argument !== "" ? <p>Rolling: {argument}</p> : <></>}
-                    <div className={styles.rollingBox}>
-                        {rolling ? (
-                            <div className={styles.rolling}></div>
-                        ) : (
-                            <p>Total: {result}</p>
-                        )}
-                    </div>
-                </div>
-                <div className={styles.history}>
-                    {rollHistory &&
-                        rollHistory.map((roll, index) => <p>{roll.roll}</p>)}
+        <div className={styles.rollingContainer}>
+            <div className={styles.text}>
+                {argument !== "" && <p>Rolling: {argument}</p>}
+                <div className={styles.rollingBox}>
+                    {rolling ? (
+                        <div className={styles.rolling}></div>
+                    ) : (
+                        <p>Total: {result}</p>
+                    )}
                 </div>
             </div>
-        </>
+            <button onClick={clearHistory} className={styles.clearButton}>
+                Clear History
+            </button>
+            <div className={styles.history} ref={historyRef}>
+                {rollHistory.map((roll, index) => {
+                    const modifier = extractModifier(roll.roll);
+                    const diceResult = roll.result - modifier;
+                    return (
+                        <p key={index}>{`Roll: ${roll.roll} (${diceResult}${
+                            modifier >= 0 ? "+" : ""
+                        }${modifier}) Result: ${roll.result}`}</p>
+                    );
+                })}
+            </div>
+        </div>
     );
 }

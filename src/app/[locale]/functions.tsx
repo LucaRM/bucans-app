@@ -32,17 +32,9 @@ export const calculateBonus5e = (
 export const roll = (roll: string): number => {
     let numberOfDice = parseInt(roll.split("d")[0]);
     let sizeOfDice = parseInt(roll.split("d")[1]);
-    let Positivebonus = parseInt(roll.split("+")[1]);
-    let negativeBonus = parseInt(roll.split("-")[1]);
     let sum = 0;
     for (let i = 0; i < numberOfDice; i++) {
         sum += Math.floor(Math.random() * sizeOfDice) + 1;
-    }
-    if (Positivebonus) {
-        sum += Positivebonus;
-    }
-    if (negativeBonus) {
-        sum -= negativeBonus;
     }
     if (sum < 0) {
         sum = 0;
