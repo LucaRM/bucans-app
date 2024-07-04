@@ -7,8 +7,8 @@ npm run dev
 ```
 
 Abra [http://localhost:3000] com o seu browser.
-
-# Atualizando Internacionalização
+# Internacionalização
+## Atualizando Internacionalização
 //! Importação de arquivos de internacionalização está automática na run do projeto
 
 Primeiro entre no site i18nexus cuja chave está no .env
@@ -20,3 +20,5 @@ i18nexus pull
 ```
 
 Os JSONs de internacionalização serão atualizados automaticamente
+
+- Para a implementação de traduções as páginas devem ser criadas dentro de um <TranslationsProvider>, e então seus componentes devem importar o useTranslation.
