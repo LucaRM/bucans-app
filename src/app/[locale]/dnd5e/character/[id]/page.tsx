@@ -4,6 +4,7 @@ import {fetchCharacter} from "@/apis/character-api";
 import {getProficiencyBonus} from "@/app/[locale]/functions";
 import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
 import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/components/TranslationsProvider";
 import AbilityScoreComponent from "@/components/ability-score/ability-score";
 import ActionsComponent from "@/components/actions/actions";
 import RollerComponent from "@/components/roller/roller";
@@ -18,10 +19,12 @@ type Params = {
 };
 
 const CharacterDetailsPage = ({params}: {params: Params}) => {
+    const i18nNamespaces = ["dnd5e-character-sheet"];
     const id = params.id;
     const [t, setT] = useState<(key: string) => string>(
         () => (key: string) => key
     );
+    const [resources, setResources] = useState<any>({});
 
     const [character, setCharacter] = useState<Character | null>(null);
     const [diceRoll, setDiceRoll] = useState<string>("");
@@ -35,10 +38,12 @@ const CharacterDetailsPage = ({params}: {params: Params}) => {
 
     useEffect(() => {
         const initializeTranslations = async () => {
-            const {t} = await initTranslations(params.locale, [
-                "dnd5e-character-sheet",
-            ]);
+            const {t, resources} = await initTranslations(
+                params.locale,
+                i18nNamespaces
+            );
             setT(() => t);
+            setResources(resources);
         };
         initializeTranslations();
     }, [params.locale]);
@@ -75,44 +80,49 @@ const CharacterDetailsPage = ({params}: {params: Params}) => {
     }
 
     return (
-        <main className={styles.main}>
-            {character.name}
-            <AbilityScoreComponent
-                rollNewDice={rollNewDice}
-                abilityScores={character.abilityScore}
-                proficiencyBonus={proficiencyBonus}
-            />
-            <div className={styles.sheet}>
-                <div className={styles.skillList}>
-                    <SkillsComponent
-                        params={params}
-                        system={character.system}
-                        rollNewDice={rollNewDice}
-                        skills={character.skills}
-                        abilityScores={character.abilityScore}
-                        proficiencyBonus={proficiencyBonus}
-                    />
+        <TranslationsProvider
+            resources={resources}
+            locale={params.locale}
+            namespaces={i18nNamespaces}
+        >
+            <main className={styles.main}>
+                {character.name}
+                <AbilityScoreComponent
+                    rollNewDice={rollNewDice}
+                    abilityScores={character.abilityScore}
+                    proficiencyBonus={proficiencyBonus}
+                />
+                <div className={styles.sheet}>
+                    <div className={styles.skillList}>
+                        <SkillsComponent
+                            system={character.system}
+                            rollNewDice={rollNewDice}
+                            skills={character.skills}
+                            abilityScores={character.abilityScore}
+                            proficiencyBonus={proficiencyBonus}
+                        />
+                    </div>
+                    <div className={styles.body}>
+                        <SavingThrowComponent
+                            system={character.system}
+                            rollNewDice={rollNewDice}
+                            savingThrows={character.savingThrow}
+                            abilityScores={character.abilityScore}
+                            proficiencyBonus={proficiencyBonus}
+                        />
+                        <ActionsComponent
+                            rollNewDice={rollNewDice}
+                            abilityScores={character.abilityScore}
+                            proficiencyBonus={proficiencyBonus}
+                        />
+                        <RollerComponent
+                            diceRoll={diceRoll}
+                            rollDescription={rollDescription}
+                        />
+                    </div>
                 </div>
-                <div className={styles.body}>
-                    <SavingThrowComponent
-                        system={character.system}
-                        rollNewDice={rollNewDice}
-                        savingThrows={character.savingThrow}
-                        abilityScores={character.abilityScore}
-                        proficiencyBonus={proficiencyBonus}
-                    />
-                    <ActionsComponent
-                        rollNewDice={rollNewDice}
-                        abilityScores={character.abilityScore}
-                        proficiencyBonus={proficiencyBonus}
-                    />
-                    <RollerComponent
-                        diceRoll={diceRoll}
-                        rollDescription={rollDescription}
-                    />
-                </div>
-            </div>
-        </main>
+            </main>
+        </TranslationsProvider>
     );
 };
 
