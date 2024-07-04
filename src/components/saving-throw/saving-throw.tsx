@@ -15,7 +15,7 @@ export default function SavingThrowComponent({
     system: string;
     savingThrows: SavingThrow;
     abilityScores: AbilityScore;
-    rollNewDice: (data: string) => void;
+    rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
     return (
@@ -29,7 +29,8 @@ export default function SavingThrowComponent({
                                     abilityScores[ability],
                                     proficiencyBonus,
                                     savingThrows[ability]
-                                )}`
+                                )}`,
+                                ability
                             )
                         }
                         className={styles.savingThrow}

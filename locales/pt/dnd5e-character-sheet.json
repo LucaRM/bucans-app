@@ -1,0 +1,23 @@
+{
+	"character not found":"Personagem não encontrado",
+	"skill":{
+		"Acrobatics":"Acrobacias",
+		"Animal Handling":"Manejo de Animais",
+		"Arcana":"Arcano",
+		"Athletics":"Atletismo",
+		"Deception":"Decepção",
+		"History":"História",
+		"Insight":"Entendimento",
+		"Intimidation":"Intimidação",
+		"Investigation":"Investigação",
+		"Medicine":"Medicamento",
+		"Nature":"Natureza",
+		"Perception":"Percepção",
+		"Performance":"Desempenho",
+		"Persuasion":"Persuasão",
+		"Religion":"Religião",
+		"Sleight of Hand":"Prestidigitação",
+		"Stealth":"Furtividade",
+		"Survival":"Sobrevivência"
+	}
+}

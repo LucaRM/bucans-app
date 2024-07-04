@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "i18nexus pull && next dev",
+    "build": "i18nexus pull && next build",
+    "start": "i18nexus pull && next start",
+    "lint": "i18nexus pull && next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -17,6 +17,7 @@
     "axios": "^1.4.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "i18n": "^0.15.1",
     "i18next": "^23.11.5",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "13.4.1",
@@ -36,6 +37,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "i18nexus-cli": "^3.4.0",
     "sass": "^1.62.1"
   }
 }

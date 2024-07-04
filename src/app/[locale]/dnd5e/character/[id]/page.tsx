@@ -1,8 +1,10 @@
+// CharacterDetailsPage.tsx
 "use client";
-import AbilityScoreComponent from "@/@/app/[locale]/functionsmponents/ability-score/ability-score";
 import {fetchCharacter} from "@/apis/character-api";
-import {Character} from "@/app/[l@/app/[locale]/functionsharacter-sheet/characterSheet.model";
-import {getProficiencyBonus} from "@/app/functions";
+import {getProficiencyBonus} from "@/app/[locale]/functions";
+import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import initTranslations from "@/app/i18n";
+import AbilityScoreComponent from "@/components/ability-score/ability-score";
 import ActionsComponent from "@/components/actions/actions";
 import RollerComponent from "@/components/roller/roller";
 import SavingThrowComponent from "@/components/saving-throw/saving-throw";
@@ -10,16 +12,36 @@ import SkillsComponent from "@/components/skills/skills";
 import {useEffect, useState} from "react";
 import styles from "./page.module.scss";
 
-const CharacterDetailsPage = ({params}: {params: {id: string}}) => {
+type Params = {
+    id: string;
+    locale: string;
+};
+
+const CharacterDetailsPage = ({params}: {params: Params}) => {
     const id = params.id;
+    const [t, setT] = useState<(key: string) => string>(
+        () => (key: string) => key
+    );
 
     const [character, setCharacter] = useState<Character | null>(null);
     const [diceRoll, setDiceRoll] = useState<string>("");
     const [proficiencyBonus, setProficiencyBonus] = useState<number>(0);
+    const [rollDescription, setRollDescription] = useState<string>("");
 
-    const rollNewDice = (data: string) => {
+    const rollNewDice = (data: string, rollDescription: string) => {
         setDiceRoll(data);
+        setRollDescription(rollDescription);
     };
+
+    useEffect(() => {
+        const initializeTranslations = async () => {
+            const {t} = await initTranslations(params.locale, [
+                "dnd5e-character-sheet",
+            ]);
+            setT(() => t);
+        };
+        initializeTranslations();
+    }, [params.locale]);
 
     useEffect(() => {
         if (character) {
@@ -63,6 +85,7 @@ const CharacterDetailsPage = ({params}: {params: {id: string}}) => {
             <div className={styles.sheet}>
                 <div className={styles.skillList}>
                     <SkillsComponent
+                        params={params}
                         system={character.system}
                         rollNewDice={rollNewDice}
                         skills={character.skills}
@@ -83,7 +106,10 @@ const CharacterDetailsPage = ({params}: {params: {id: string}}) => {
                         abilityScores={character.abilityScore}
                         proficiencyBonus={proficiencyBonus}
                     />
-                    <RollerComponent diceRoll={diceRoll} />
+                    <RollerComponent
+                        diceRoll={diceRoll}
+                        rollDescription={rollDescription}
+                    />
                 </div>
             </div>
         </main>

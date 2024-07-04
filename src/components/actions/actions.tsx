@@ -9,18 +9,19 @@ export default function ActionsComponent({
     proficiencyBonus,
 }: {
     abilityScores: AbilityScore;
-    rollNewDice: (data: string) => void;
+    rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
     const [abilityScore, setAbilityScore] = useState<AbilityScore>({});
 
-    function rollDice(ability: string) {
+    function rollDice(ability: string, rollDescription: string) {
         const argument = `1d20${calculateBonus5e(
             abilityScore[ability],
             proficiencyBonus,
             "not-proficient"
         )}`;
-        rollNewDice(argument);
+        console.log("rollDescriptio: ", rollDescription);
+        rollNewDice(argument, rollDescription);
     }
 
     useEffect(() => {
@@ -32,35 +33,35 @@ export default function ActionsComponent({
             {/* Longsword */}
             <button
                 className={styles.action}
-                onClick={() => rollDice("strength")}
+                onClick={() => rollDice("strength", "Longsword")}
             >
                 Longsword
             </button>
             {/* Shortsword */}
             <button
                 className={styles.action}
-                onClick={() => rollDice("dexterity")}
+                onClick={() => rollDice("dexterity", "Shortsword")}
             >
                 Shortsword
             </button>
             {/* Intelligence attack */}
             <button
                 className={styles.action}
-                onClick={() => rollDice("intelligence")}
+                onClick={() => rollDice("intelligence", "Intelligence Attack")}
             >
                 Intelligence Spell Attack
             </button>
             {/* Wisdom attack */}
             <button
                 className={styles.action}
-                onClick={() => rollDice("wisdom")}
+                onClick={() => rollDice("wisdom", "Wisdom Attack")}
             >
                 Wisdom Spell Attack
             </button>
             {/* Charisma attack */}
             <button
                 className={styles.action}
-                onClick={() => rollDice("charisma")}
+                onClick={() => rollDice("charisma", "Charisma Attack")}
             >
                 Charisma Spell Attack
             </button>

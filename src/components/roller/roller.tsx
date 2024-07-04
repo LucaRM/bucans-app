@@ -3,7 +3,13 @@ import {Roll} from "@/app/[locale]/models/roll/roll.model";
 import {useEffect, useRef, useState} from "react";
 import styles from "./roller.module.scss";
 
-export default function RollerComponent({diceRoll}: {diceRoll: string}) {
+export default function RollerComponent({
+    diceRoll,
+    rollDescription,
+}: {
+    diceRoll: string;
+    rollDescription: string;
+}) {
     const [result, setResult] = useState(0);
     const [rolling, setRolling] = useState(false);
     const [argument, setArgument] = useState("");
@@ -68,9 +74,12 @@ export default function RollerComponent({diceRoll}: {diceRoll: string}) {
                     const modifier = extractModifier(roll.roll);
                     const diceResult = roll.result - modifier;
                     return (
-                        <p key={index}>{`Roll: ${roll.roll} (${diceResult}${
-                            modifier >= 0 ? "+" : ""
-                        }${modifier}) Result: ${roll.result}`}</p>
+                        <div key={index} className={styles.rollHistoryBox}>
+                            <p>{rollDescription}</p>
+                            <p>{`${roll.roll} (${diceResult}${
+                                modifier >= 0 ? "+" : ""
+                            }${modifier}) Result: ${roll.result}`}</p>
+                        </div>
                     );
                 })}
             </div>

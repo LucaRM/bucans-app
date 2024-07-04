@@ -8,7 +8,7 @@ export default function AbilityScoreComponent({
     proficiencyBonus,
 }: {
     abilityScores: AbilityScore;
-    rollNewDice: (data: string) => void;
+    rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
     return (
@@ -21,7 +21,8 @@ export default function AbilityScoreComponent({
                                 value,
                                 proficiencyBonus,
                                 "not-proficiency"
-                            )}`
+                            )}`,
+                            value.toString()
                         )
                     }
                     className={styles.abilityScore}

@@ -44,13 +44,20 @@
         height: 40px;
     }
 
+    .rollHistoryBox {
+        border-radius: 15px;
+        border: 1px solid #666;
+        padding: 5px;
+        margin: 10px;
+    }
+
     .clearButton:hover {
         background-color: #005bb5;
     }
 
     .history {
-        max-height: 200px; /* Set the maximum height for the history container */
-        overflow-y: auto; /* Enable vertical scrolling */
+        max-height: 400px;
+        overflow-y: auto;
         margin-top: 10px;
         border-top: 1px solid #ddd;
         padding-top: 10px;
