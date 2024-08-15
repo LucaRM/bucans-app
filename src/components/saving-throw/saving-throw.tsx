@@ -1,8 +1,9 @@
-import {calculateBonus5e, formatWord} from "@/app/[locale]/functions";
+import {calculateBonus5e} from "@/app/[locale]/functions";
 import {
     AbilityScore,
     SavingThrow,
 } from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import {useTranslation} from "react-i18next";
 import styles from "./saving-throw.module.scss";
 
 export default function SavingThrowComponent({
@@ -18,6 +19,8 @@ export default function SavingThrowComponent({
     rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
+    const {t} = useTranslation("dnd5e-character-sheet");
+
     return (
         <div className={styles.savingThrowContainer}>
             {savingThrows ? (
@@ -36,7 +39,7 @@ export default function SavingThrowComponent({
                         className={styles.savingThrow}
                         key={index}
                     >
-                        <p>{formatWord(ability)}</p>
+                        {t(`abilityScore.${ability}`)}
                         <p>
                             {calculateBonus5e(
                                 abilityScores[ability],

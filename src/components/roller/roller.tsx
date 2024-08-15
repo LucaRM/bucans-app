@@ -40,7 +40,12 @@ export default function RollerComponent({
             setRolling(false);
             setRollHistory((prevHistory) => [
                 ...prevHistory,
-                {roll: argument, dice: 0, result: finalResult},
+                {
+                    roll: argument,
+                    dice: 0,
+                    result: finalResult,
+                    description: rollDescription,
+                },
             ]);
         }, 200);
     }
@@ -75,7 +80,7 @@ export default function RollerComponent({
                     const diceResult = roll.result - modifier;
                     return (
                         <div key={index} className={styles.rollHistoryBox}>
-                            <p>{rollDescription}</p>
+                            <p>{roll.description}</p>
                             <p>{`${roll.roll} (${diceResult}${
                                 modifier >= 0 ? "+" : ""
                             }${modifier}) Result: ${roll.result}`}</p>

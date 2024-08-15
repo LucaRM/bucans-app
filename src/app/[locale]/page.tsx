@@ -9,7 +9,6 @@ export default function Home() {
                 </p>
             </div>
             <div>
-                {/* Link to a page on character/sheet */}
                 <Link href="/dnd5e/character/list">
                     <p>See your characters!</p>
                 </Link>

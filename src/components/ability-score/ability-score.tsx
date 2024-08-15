@@ -1,5 +1,6 @@
-import {calculateBonus5e, formatWord} from "@/app/[locale]/functions";
+import {calculateBonus5e} from "@/app/[locale]/functions";
 import {AbilityScore} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import {useTranslation} from "react-i18next";
 import styles from "./ability-score.module.scss";
 
 export default function AbilityScoreComponent({
@@ -11,6 +12,7 @@ export default function AbilityScoreComponent({
     rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
+    const {t} = useTranslation("dnd5e-character-sheet");
     return (
         <div className={styles.abilityScoreContainer}>
             {Object.values(abilityScores).map((value, index) => (
@@ -28,7 +30,9 @@ export default function AbilityScoreComponent({
                     className={styles.abilityScore}
                     key={index}
                 >
-                    <h2>{formatWord(Object.keys(abilityScores)[index])}</h2>
+                    <h2>
+                        {t(`abilityScore.${Object.keys(abilityScores)[index]}`)}
+                    </h2>
                     <p>{value}</p>
                     <p>
                         {value
