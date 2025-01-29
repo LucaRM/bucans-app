@@ -5,9 +5,9 @@ export interface Character {
     name: string;
     level: number;
     class: string;
-    abilityScore: AbilityScore;
+    abilityScores: AbilityScore;
     skills: Skill[];
-    savingThrow: SavingThrow;
+    savingThrows: SavingThrow;
 }
 
 export interface AbilityScore {
@@ -34,8 +34,8 @@ export const constructorCharacter5e = (): Character => {
         name: "",
         level: 0,
         class: "",
-        abilityScore: {},
+        abilityScores: {},
         skills: [],
-        savingThrow: {},
+        savingThrows: {},
     };
 };

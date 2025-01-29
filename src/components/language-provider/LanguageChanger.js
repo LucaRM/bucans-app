@@ -1,11 +1,12 @@
 "use client";
 
 import i18nConfig from "@/i18nConfig";
-import {usePathname, useRouter} from "next/navigation";
-import {useTranslation} from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import styles from "./LanguageChanger.module.scss";
 
 export default function LanguageChanger() {
-    const {i18n} = useTranslation();
+    const { i18n } = useTranslation();
     const currentLocale = i18n.language;
     const router = useRouter();
     const currentPathname = usePathname();
@@ -33,7 +34,7 @@ export default function LanguageChanger() {
     };
 
     return (
-        <select onChange={handleChange} value={currentLocale}>
+        <select onChange={handleChange} value={currentLocale} className={styles.selector}>
             <option value="pt">Português</option>
             <option value="en">English</option>
         </select>

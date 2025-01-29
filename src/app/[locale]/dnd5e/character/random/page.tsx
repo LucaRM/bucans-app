@@ -1,9 +1,8 @@
 "use client";
-import {roll} from "@/app/[locale]/functions";
-import {AbilityScore} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { roll } from "@/app/[locale]/functions";
+import { AbilityScore } from "@/app/[locale]/models/character-sheet/characterSheet.model";
 import Actions from "@/components/actions/actions";
-import ModalCritico from "@/components/modal";
-import {useState} from "react";
+import { useState } from "react";
 import styles from "./page.module.scss";
 
 export default function Home() {
@@ -47,7 +46,6 @@ export default function Home() {
                     </button>
                 </div>
             </main>
-            <ModalCritico rolled={result} />
         </>
     );
 }
