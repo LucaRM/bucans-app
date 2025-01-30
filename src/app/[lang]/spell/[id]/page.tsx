@@ -1,16 +1,16 @@
 "use client";
-import {fetchCharacter} from "@/apis/character-api";
-import {getProficiencyBonus} from "@/app/[locale]/functions";
-import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { fetchCharacter } from "@/apis/character-api";
+import { getProficiencyBonus } from "@/app/[lang]/functions";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import AbilityScoreComponent from "@/components/ability-score/ability-score";
 import ActionsComponent from "@/components/actions/actions";
 import RollerComponent from "@/components/roller/roller";
 import SavingThrowComponent from "@/components/saving-throw/saving-throw";
 import SkillsComponent from "@/components/skills/skills";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
 
-const CharacterDetailsPage = ({params}: {params: {id: string}}) => {
+const CharacterDetailsPage = ({ params }: { params: { id: string } }) => {
     const id = params.id;
 
     const [character, setCharacter] = useState<Character | null>(null);

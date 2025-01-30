@@ -1,7 +1,7 @@
 "use client";
-import {createCharacter} from "@/apis/character-api";
-import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {ChangeEvent, FormEvent, useState} from "react";
+import { createCharacter } from "@/apis/character-api";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./page.module.scss";
 
 const CharacterAddPage5e = () => {
@@ -180,7 +180,7 @@ const CharacterAddPage5e = () => {
     };
 
     const handleSavingThrowChange = (ability: string) => {
-        const updatedSavingThrow = {...character.savingThrow};
+        const updatedSavingThrow = { ...character.savingThrow };
         updatedSavingThrow[ability] =
             updatedSavingThrow[ability] !== "proficient"
                 ? "proficient"
@@ -192,7 +192,7 @@ const CharacterAddPage5e = () => {
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         const parsedValue = name === "level" ? parseInt(value, 10) : value;
 
         setCharacter((prevCharacter) => ({

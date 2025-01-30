@@ -1,6 +1,6 @@
-import {calculateBonus5e} from "@/app/[locale]/functions";
-import {AbilityScore} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {useEffect, useState} from "react";
+import { calculateBonus5e } from "@/app/[lang]/functions";
+import { AbilityScore } from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { useEffect, useState } from "react";
 import styles from "./actions.module.scss";
 
 export default function ActionsComponent({

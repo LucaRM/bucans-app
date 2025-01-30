@@ -1,8 +1,8 @@
 // CharacterDetailsPage.tsx
 "use client";
 import { fetchCharacter } from "@/apis/character-api";
-import { getProficiencyBonus } from "@/app/[locale]/functions";
-import { Character } from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { getProficiencyBonus } from "@/app/[lang]/functions";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/language-provider/TranslationsProvider";
 import AbilityScoreComponent from "@/components/ability-score/ability-score";

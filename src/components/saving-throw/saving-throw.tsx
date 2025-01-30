@@ -1,8 +1,8 @@
-import { calculateBonus5e } from "@/app/[locale]/functions";
+import { calculateBonus5e } from "@/app/[lang]/functions";
 import {
     AbilityScore,
     SavingThrow,
-} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+} from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import { useTranslation } from "react-i18next";
 import styles from "./saving-throw.module.scss";
 

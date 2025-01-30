@@ -1,7 +1,7 @@
 "use client";
-import {fetchUsers} from "@/apis/user-api";
-import {User} from "@/app/[locale]/models/user/user.model";
-import {useEffect, useState} from "react";
+import { fetchUsers } from "@/apis/user-api";
+import { User } from "@/app/[lang]/models/user/user.model";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const [users, setUsers] = useState<User[]>([]);

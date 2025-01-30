@@ -1,6 +1,6 @@
 "use client";
 import { fetchCharacters } from "@/apis/character-api";
-import { Character } from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import LinkProvider from "@/components/language-provider/LinkProvider";
 import { useEffect, useState } from "react";
 

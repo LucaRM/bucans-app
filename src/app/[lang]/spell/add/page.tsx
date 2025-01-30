@@ -1,14 +1,14 @@
 "use client";
-import {createSpell} from "@/apis/spell-api";
-import {Spell, constructorSpell} from "@/app/[locale]/models/spell/spell.model";
-import {ChangeEvent, FormEvent, useState} from "react";
+import { createSpell } from "@/apis/spell-api";
+import { Spell, constructorSpell } from "@/app/[lang]/models/spell/spell.model";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./page.module.scss";
 
 const SpellAddPage5e = () => {
     const [spell, setSpell] = useState<Spell>(constructorSpell());
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         const parsedValue = name === "level" ? parseInt(value, 10) : value;
 
         setSpell((prevSpell) => ({

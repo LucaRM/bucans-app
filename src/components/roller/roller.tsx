@@ -1,6 +1,6 @@
-import {roll} from "@/app/[locale]/functions";
-import {Roll} from "@/app/[locale]/models/roll/roll.model";
-import {useEffect, useRef, useState} from "react";
+import { roll } from "@/app/[lang]/functions";
+import { Roll } from "@/app/[lang]/models/roll/roll.model";
+import { useEffect, useRef, useState } from "react";
 import styles from "./roller.module.scss";
 
 export default function RollerComponent({
@@ -81,9 +81,8 @@ export default function RollerComponent({
                     return (
                         <div key={index} className={styles.rollHistoryBox}>
                             <p>{roll.description}</p>
-                            <p>{`${roll.roll} (${diceResult}${
-                                modifier >= 0 ? "+" : ""
-                            }${modifier}) Result: ${roll.result}`}</p>
+                            <p>{`${roll.roll} (${diceResult}${modifier >= 0 ? "+" : ""
+                                }${modifier}) Result: ${roll.result}`}</p>
                         </div>
                     );
                 })}

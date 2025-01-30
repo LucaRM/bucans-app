@@ -1,8 +1,8 @@
 "use client";
-import {fetchCharacters} from "@/apis/character-api";
-import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { fetchCharacters } from "@/apis/character-api";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function CharacterList() {
     const [result, setResult] = useState(0);

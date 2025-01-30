@@ -1,6 +1,6 @@
 "use client";
-import {AbilityScore} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {useState} from "react";
+import { AbilityScore } from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { useState } from "react";
 import ActionsComponent from "../actions/actions";
 import FeaturesComponent from "../features/features";
 import styles from "./tabs.module.scss";

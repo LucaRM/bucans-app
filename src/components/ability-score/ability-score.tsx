@@ -1,6 +1,6 @@
-import {calculateBonus5e} from "@/app/[locale]/functions";
-import {AbilityScore} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {useTranslation} from "react-i18next";
+import { calculateBonus5e } from "@/app/[lang]/functions";
+import { AbilityScore } from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { useTranslation } from "react-i18next";
 import styles from "./ability-score.module.scss";
 
 export default function AbilityScoreComponent({
@@ -12,7 +12,7 @@ export default function AbilityScoreComponent({
     rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
-    const {t} = useTranslation("dnd5e-character-sheet");
+    const { t } = useTranslation("dnd5e-character-sheet");
     return (
         <div className={styles.abilityScoreContainer}>
             {Object.values(abilityScores).map((value, index) => (
@@ -37,16 +37,16 @@ export default function AbilityScoreComponent({
                     <p>
                         {value
                             ? calculateBonus5e(
-                                  value,
-                                  proficiencyBonus,
-                                  "not-proficiency"
-                              ) === "-0"
+                                value,
+                                proficiencyBonus,
+                                "not-proficiency"
+                            ) === "-0"
                                 ? "0"
                                 : calculateBonus5e(
-                                      value,
-                                      proficiencyBonus,
-                                      "not-proficiency"
-                                  )
+                                    value,
+                                    proficiencyBonus,
+                                    "not-proficiency"
+                                )
                             : 0}
                     </p>
                 </button>

@@ -1,6 +1,6 @@
 "use client";
-import { roll } from "@/app/[locale]/functions";
-import { AbilityScore } from "@/app/[locale]/models/character-sheet/characterSheet.model";
+import { roll } from "@/app/[lang]/functions";
+import { AbilityScore } from "@/app/[lang]/models/character-sheet/characterSheet.model";
 import Actions from "@/components/actions/actions";
 import { useState } from "react";
 import styles from "./page.module.scss";

@@ -1,7 +1,7 @@
 "use client";
-import {createCharacter} from "@/apis/character-api";
-import {Character} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {ChangeEvent, FormEvent, useState} from "react";
+import { createCharacter } from "@/apis/character-api";
+import { Character } from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./page.module.scss";
 
 const CharacterAddPage5e = () => {
@@ -11,7 +11,7 @@ const CharacterAddPage5e = () => {
         name: "",
         class: "",
         level: 0,
-        abilityScore: {
+        abilityScores: {
             strength: 0,
             dexterity: 0,
             constitution: 0,
@@ -147,7 +147,7 @@ const CharacterAddPage5e = () => {
                 addon: false,
             },
         ],
-        savingThrow: {
+        savingThrows: {
             strength: "not-proficient",
             dexterity: "not-proficient",
             constitution: "not-proficient",
@@ -161,7 +161,7 @@ const CharacterAddPage5e = () => {
         setCharacter((prevCharacter) => ({
             ...prevCharacter,
             abilityScore: {
-                ...prevCharacter.abilityScore,
+                ...prevCharacter.abilityScores,
                 [ability]: value,
             },
         }));
@@ -180,7 +180,7 @@ const CharacterAddPage5e = () => {
     };
 
     const handleSavingThrowChange = (ability: string) => {
-        const updatedSavingThrow = {...character.savingThrow};
+        const updatedSavingThrow = { ...character.savingThrows };
         updatedSavingThrow[ability] =
             updatedSavingThrow[ability] !== "proficient"
                 ? "proficient"
@@ -192,7 +192,7 @@ const CharacterAddPage5e = () => {
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         const parsedValue = name === "level" ? parseInt(value, 10) : value;
 
         setCharacter((prevCharacter) => ({
@@ -247,12 +247,12 @@ const CharacterAddPage5e = () => {
                     />
                 </label>
                 <br />
-                {Object.keys(character.abilityScore).map((ability) => (
+                {Object.keys(character.abilityScores).map((ability) => (
                     <label key={ability}>
                         {ability}:
                         <input
                             type="number"
-                            value={character.abilityScore[ability]}
+                            value={character.abilityScores[ability]}
                             onChange={(event) =>
                                 handleAbilityChange(
                                     ability,
@@ -280,16 +280,16 @@ const CharacterAddPage5e = () => {
 
                 <p>Saving Throws</p>
 
-                {Object.keys(character.savingThrow).map((ability, index) => (
+                {Object.keys(character.savingThrows).map((ability, index) => (
                     <div key={ability}>
                         <input
                             key={index}
                             type="checkbox"
                             name={`proficiency-${index}`}
                             checked={
-                                character.savingThrow[ability] === "proficient"
+                                character.savingThrows[ability] === "proficient"
                             }
-                            value={character.savingThrow[ability]}
+                            value={character.savingThrows[ability]}
                             onChange={() => handleSavingThrowChange(ability)}
                         />
                         <label>{ability}</label>:

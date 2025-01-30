@@ -1,9 +1,9 @@
-import {calculateBonus5e} from "@/app/[locale]/functions";
+import { calculateBonus5e } from "@/app/[lang]/functions";
 import {
     AbilityScore,
     Skill,
-} from "@/app/[locale]/models/character-sheet/characterSheet.model";
-import {useTranslation} from "react-i18next";
+} from "@/app/[lang]/models/character-sheet/characterSheet.model";
+import { useTranslation } from "react-i18next";
 
 import styles from "./skills.module.scss";
 
@@ -20,7 +20,7 @@ export default function SkillsComponent({
     rollNewDice: (data: string, rollDescription: string) => void;
     proficiencyBonus: number;
 }) {
-    const {t} = useTranslation("dnd5e-character-sheet");
+    const { t } = useTranslation("dnd5e-character-sheet");
 
     return (
         <div className={styles.skillsContainer}>

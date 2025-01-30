@@ -9,7 +9,7 @@ import initTranslations from "@/app/i18n";
 import LinkProvider from "../language-provider/LinkProvider";
 
 type Params = {
-    locale: string;
+    lang: string;
 };
 
 export default function Header({ params }: { params: Params }) {
@@ -21,13 +21,13 @@ export default function Header({ params }: { params: Params }) {
     useEffect(() => {
         const initializeTranslations = async () => {
             const { t, resources } = await initTranslations(
-                params.locale,
+                params.lang,
                 i18nNamespaces
             );
             setT(() => t);
         };
         initializeTranslations();
-    }, [params.locale]);
+    }, [params.lang]);
     return (
         <header className={styles.header}>
             <nav className={styles.navigation}>
